@@ -1,2 +1,2 @@
 # ckb-import
-Python Script for importing https://online.ccbank.mk/ bank statements into manager.io CSVs
+Python Script for converting https://online.ccbank.mk/ bank statements into manager.io CSVs format

@@ -11,7 +11,7 @@ import datetime
 
 SelectList = [13, 12, 18, 19, 14, 15]
 #ManagerStatement.write("Date, Payee, Reference, Description, Amount\n")
-print("Hello and welcome to the IBORN.NET - ProCredit Bank MK Bank statement processor - version 1.0")
+print("IBORN.NET - ProCredit Bank MK Bank statement processor - version 1.0")
 print("Started processing at {0}.".format(datetime.datetime.now()))
 with open(sys.argv[1]+'-mng.csv', mode='wb') as manager_csv, open(sys.argv[1]) as csvfile:
     manager_writer = csv.writer(manager_csv, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)

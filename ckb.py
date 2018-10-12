@@ -1,6 +1,6 @@
 #Convert CKB bank statement
 import sys, codecs
-
+import datetime
 #open the file. read everything except line with totals
 BankStatement = codecs.open(sys.argv[1], 'r', 'cp1251')
 TransactionsList = BankStatement.readlines()[:-1]
@@ -12,7 +12,8 @@ ManagerStatement.write("Date, Description, Amount\n")
 
 #list to select just the needed elements
 SelectList = [1, 5 ,6, 9]
-
+print("IBORN.NET - Central Cooperative Bank MK Bank statement processor - version 1.0")
+print("Started processing at {0}.".format(datetime.datetime.now()))
 for Transaction in TransactionsList:
 
     DateDescriptionAmmoutList = []
@@ -40,3 +41,5 @@ for Transaction in TransactionsList:
 #close files
 BankStatement.close()
 ManagerStatement.close()
+print("Successfully processed the bank file {0}".format(sys.argv[1]+'-mng.csv'))
+print("Finished processing at {0}.".format(datetime.datetime.now()))

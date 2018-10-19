@@ -8,8 +8,9 @@ import datetime
 #   Amount 
 #         Textbox18 (Debit) - 14
 #         Textbox15 (Credit) - 15
+#   ContractorTaxCode
 
-SelectList = [13, 12, 18, 19, 14, 15]
+SelectList = [13, 12, 18, 19, 14, 15, 16]
 #ManagerStatement.write("Date, Payee, Reference, Description, Amount\n")
 print("IBORN.NET - ProCredit Bank MK Bank statement processor - version 1.0")
 print("Started processing at {0}.".format(datetime.datetime.now()))
@@ -20,7 +21,7 @@ with open(sys.argv[1]+'-mng.csv', mode='wb') as manager_csv, open(sys.argv[1]) a
     next(bankstatement, None)     
     transcation_count = 0
     for transaction in bankstatement:
-        transcation_count = transcation_count+1
+        transcation_count = transcation_count + 1
         print("Processing transaction {0}".format(transcation_count))  
         if not (transaction):
             print("Detected empty transaction. Skipping.")  
@@ -32,7 +33,9 @@ with open(sys.argv[1]+'-mng.csv', mode='wb') as manager_csv, open(sys.argv[1]) a
         if float(managerTransactionList[5].replace(',','')) != 0.00:
             amount = (managerTransactionList[5].replace(',','').replace(".",","))
         
-        del managerTransactionList[4:6]
+        if float(managerTransactionList[6].replace(',','')) != 0.00:
+           manager_writer.writerow([managerTransactionList[0], 'ProCredit Bank MK', managerTransactionList[3], 'Провизија', "-"+(managerTransactionList[6].replace(',','').replace(".",","))])
+        del managerTransactionList[4:7]
         managerTransactionList.append(amount)
         #print managerTransactionList
         manager_writer.writerow(managerTransactionList)
